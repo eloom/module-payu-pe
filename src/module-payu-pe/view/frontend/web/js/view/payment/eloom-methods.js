@@ -1,0 +1,1 @@
+define(["uiComponent","Magento_Checkout/js/model/payment/renderer-list"],function(a,b){b.push({type:"eloom_payments_payu_pagoefectivo",component:"Eloom_PayUPe/js/view/payment/method-renderer/pagoefectivo-method"});return a.extend({})});
