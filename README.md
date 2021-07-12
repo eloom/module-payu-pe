@@ -1,4 +1,4 @@
-# PayU Perú para Magento 2
+# PayU Peru para Magento 2
 
 ## Licencia
 
@@ -12,8 +12,8 @@ Instale [PayU Latam](https://github.com/eloom/module-payu).
 
 ## Enlaces
 
-* [Sitio web](https://eloom.tech/payu)
-* [Documentación](https://docs.eloom.tech/payu)
+* [Sitio web](https://eloom.tech/payu-latam)
+* [Documentación](https://docs.eloom.tech/payu-latam)
 * [Issue tracker](https://github.com/eloom/module-payu-pe/issues)
-* [Composer](https://packagist.org/packages/eloom/module-payu-pe)
+* [Composer](https://app.repman.io/organization/eloom/package/696ae642-e561-4310-afa2-7c9f90973cc8/details)
 * [Codigo fuente](https://github.com/eloom/module-payu-pe)
