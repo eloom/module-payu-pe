@@ -15,9 +15,6 @@ declare(strict_types=1);
 
 namespace Eloom\PayUPe\Block\PagoEfectivo;
 
-use Magento\Framework\Phrase;
-use Magento\Payment\Block\ConfigurableInfo;
-
 class Info extends \Eloom\PayU\Block\Info {
 
 	public function getPaymentLink() {
