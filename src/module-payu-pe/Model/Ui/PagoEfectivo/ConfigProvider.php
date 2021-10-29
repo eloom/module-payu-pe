@@ -6,7 +6,7 @@
 * @category     elOOm
 * @package      Modulo PayUPe
 * @copyright    Copyright (c) 2021 Ã©lOOm (https://eloom.tech)
-* @version      1.0.2
+* @version      1.0.3
 * @license      https://opensource.org/licenses/OSL-3.0
 * @license      https://opensource.org/licenses/AFL-3.0
 *
@@ -19,10 +19,13 @@ use Eloom\PayUPe\Gateway\Config\PagoEfectivo\Config as PagoEfectivoConfig;
 use Magento\Checkout\Model\ConfigProviderInterface;
 use Magento\Framework\Escaper;
 use Magento\Framework\Session\SessionManagerInterface;
+use Magento\Framework\View\Asset\Repository;
 
 class ConfigProvider implements ConfigProviderInterface {
 
 	const CODE = 'eloom_payments_payu_pagoefectivo';
+
+	protected $assetRepo;
 
 	private $config;
 
@@ -30,9 +33,11 @@ class ConfigProvider implements ConfigProviderInterface {
 
 	protected $escaper;
 
-	public function __construct(SessionManagerInterface $session,
-	                            Escaper $escaper,
-	                            PagoEfectivoConfig $pagoEfectivoConfig) {
+	public function __construct(Repository              $assetRepo,
+	                            SessionManagerInterface $session,
+	                            Escaper                 $escaper,
+	                            PagoEfectivoConfig      $pagoEfectivoConfig) {
+		$this->assetRepo = $assetRepo;
 		$this->session = $session;
 		$this->escaper = $escaper;
 		$this->config = $pagoEfectivoConfig;
@@ -47,7 +52,10 @@ class ConfigProvider implements ConfigProviderInterface {
 			$payment = [
 				self::CODE => [
 					'isActive' => $isActive,
-					'instructions' => $this->getInstructions($storeId)
+					'instructions' => $this->getInstructions($storeId),
+					'url' => [
+						'logo' => $this->assetRepo->getUrl('Eloom_PayUPe::images/pago-efectivo.svg')
+					]
 				]
 			];
 		}
