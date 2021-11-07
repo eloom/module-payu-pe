@@ -1,7 +1,7 @@
 {
   "name": "eloom/module-payu-pe",
   "description": "Procesa pagos con tarjeta de crédito, tokenización y PagoEfectivo con PayU Peru para Magento",
-  "homepage": "https://eloom.tech/payu-latam",
+  "homepage": "https://eloom.tech/pt-BR/magento/payment/payu-latam",
   "keywords": [
     "magento",
     "magento2",
@@ -30,7 +30,7 @@
   "require": {
     "php": "~7.2|~7.3|~7.4",
     "magento/framework": "102.0.*|103.0.*",
-    "eloom/module-payu": "dev-main"
+    "eloom/module-payu": "1.0.*"
   },
   "license": [
     "OSL-3.0",
