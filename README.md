@@ -12,8 +12,8 @@ Instale [PayU Latam](https://github.com/eloom/module-payu).
 
 ## Enlaces
 
-* [Sitio web](https://eloom.tech/payu-latam)
-* [Documentación](https://docs.eloom.tech/payu-latam)
+* [Sitio web](https://eloom.tech/payment/payu-latam)
+* [Documentación](https://docs.eloom.tech/payment/payu-latam)
 * [Issue tracker](https://github.com/eloom/module-payu-pe/issues)
 * [Packagist](https://packagist.org/packages/eloom/module-payu-pe)
 * [Repman](https://app.repman.io/organization/eloom/package/696ae642-e561-4310-afa2-7c9f90973cc8/details)
