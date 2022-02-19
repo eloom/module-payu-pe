@@ -6,7 +6,7 @@
 * @category     elOOm
 * @package      Modulo PayUPe
 * @copyright    Copyright (c) 2021 Ã©lOOm (https://eloom.tech)
-* @version      1.0.3
+* @version      1.0.4
 * @license      https://opensource.org/licenses/OSL-3.0
 * @license      https://opensource.org/licenses/AFL-3.0
 *
@@ -18,8 +18,8 @@ namespace Eloom\PayUPe\Model\Ui\PagoEfectivo;
 use Eloom\PayUPe\Gateway\Config\PagoEfectivo\Config as PagoEfectivoConfig;
 use Magento\Checkout\Model\ConfigProviderInterface;
 use Magento\Framework\Escaper;
-use Magento\Framework\Session\SessionManagerInterface;
 use Magento\Framework\View\Asset\Repository;
+use Magento\Store\Model\StoreManagerInterface;
 
 class ConfigProvider implements ConfigProviderInterface {
 
@@ -29,26 +29,35 @@ class ConfigProvider implements ConfigProviderInterface {
 
 	private $config;
 
-	private $session;
-
 	protected $escaper;
 
-	public function __construct(Repository              $assetRepo,
-	                            SessionManagerInterface $session,
-	                            Escaper                 $escaper,
-	                            PagoEfectivoConfig      $pagoEfectivoConfig) {
+	protected $storeManager;
+
+	public function __construct(Repository            $assetRepo,
+	                            Escaper               $escaper,
+	                            PagoEfectivoConfig    $pagoEfectivoConfig,
+	                            StoreManagerInterface $storeManager) {
 		$this->assetRepo = $assetRepo;
-		$this->session = $session;
 		$this->escaper = $escaper;
 		$this->config = $pagoEfectivoConfig;
+		$this->storeManager = $storeManager;
 	}
 
 	public function getConfig() {
-		$storeId = $this->session->getStoreId();
-
+		$store = $this->storeManager->getStore();
 		$payment = [];
+		$storeId = $store->getStoreId();
 		$isActive = $this->config->isActive($storeId);
 		if ($isActive) {
+			$currency = $store->getCurrentCurrencyCode();
+			if ('PEN' != $currency) {
+				return ['payment' => [
+					self::CODE => [
+						'message' =>  sprintf("Currency %s not supported.", $currency)
+					]
+				]];
+			}
+
 			$payment = [
 				self::CODE => [
 					'isActive' => $isActive,
