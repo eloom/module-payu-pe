@@ -4,7 +4,7 @@
 * PayU Peru para Magento 2
 * 
 * @category     elOOm
-* @package      Modulo PayUPe
+* @package      Modulo PayU Peru
 * @copyright    Copyright (c) 2022 elOOm (https://eloom.tech)
 * @version      1.0.4
 * @license      https://opensource.org/licenses/OSL-3.0

@@ -4,7 +4,7 @@
 * PayU Peru para Magento 2
 * 
 * @category     elOOm
-* @package      Modulo PayUPe
+* @package      Modulo PayU Peru
 * @copyright    Copyright (c) 2022 elOOm (https://eloom.tech)
 * @version      1.0.4
 * @license      https://opensource.org/licenses/OSL-3.0
@@ -33,6 +33,8 @@ class ConfigProvider implements ConfigProviderInterface {
 
 	protected $storeManager;
 
+	private static $allowedCurrencies = ['PEN', 'USD'];
+
 	public function __construct(Repository            $assetRepo,
 	                            Escaper               $escaper,
 	                            PagoEfectivoConfig    $pagoEfectivoConfig,
@@ -50,7 +52,7 @@ class ConfigProvider implements ConfigProviderInterface {
 		$isActive = $this->config->isActive($storeId);
 		if ($isActive) {
 			$currency = $store->getCurrentCurrencyCode();
-			if ('PEN' != $currency) {
+			if (!in_array($currency, self::$allowedCurrencies)) {
 				return ['payment' => [
 					self::CODE => [
 						'message' =>  sprintf("Currency %s not supported.", $currency)
